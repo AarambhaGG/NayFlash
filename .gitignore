@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Rust / Cargo
+src-tauri/target/
+
+# Tauri generated schemas (re-generated on build)
+src-tauri/gen/schemas/
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Lock files (optional — remove if you want to track them)
+# package-lock.json
+# Cargo.lock
+
+# Downloaded ISOs / temp files
+*.iso
+*.img
+*.img.xz
