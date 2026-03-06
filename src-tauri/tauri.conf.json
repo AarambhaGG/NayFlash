@@ -1,0 +1,52 @@
+{
+  "$schema": "https://raw.githubusercontent.com/niceda/tauri-config-schema/main/schema.json",
+  "productName": "NayFlash",
+  "version": "1.0.0",
+  "identifier": "com.nayflash.app",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "title": "NayFlash",
+    "windows": [
+      {
+        "title": "NayFlash — Every OS journey begins here",
+        "width": 960,
+        "height": 640,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true,
+        "center": true,
+        "decorations": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true,
+      "scope": [
+        {
+          "name": "lsblk",
+          "cmd": "lsblk",
+          "args": ["-J", "-d", "-o", "NAME,SIZE,TYPE,RM,MOUNTPOINT,LABEL,MODEL"]
+        },
+        {
+          "name": "dd-flash",
+          "cmd": "pkexec",
+          "args": true
+        },
+        {
+          "name": "powershell-drives",
+          "cmd": "powershell",
+          "args": true
+        }
+      ]
+    }
+  }
+}
