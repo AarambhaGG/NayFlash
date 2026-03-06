@@ -2,7 +2,6 @@ use futures_util::StreamExt;
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::Arc;
 use tauri::{AppHandle, Emitter};
 use tokio::io::AsyncWriteExt;
 
@@ -39,11 +38,14 @@ pub async fn start_download(
 
     let client = reqwest::Client::builder()
         .timeout(std::time::Duration::from_secs(3600))
+        .user_agent("nayflash/1.0")
+        .redirect(reqwest::redirect::Policy::limited(20))
         .build()
         .map_err(|e| format!("HTTP client error: {}", e))?;
 
     let response = client
         .get(&url)
+        .header("Accept", "*/*")
         .send()
         .await
         .map_err(|e| format!("Download request failed: {}", e))?;
