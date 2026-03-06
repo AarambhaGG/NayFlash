@@ -10,7 +10,6 @@
     "beforeBuildCommand": "npm run build"
   },
   "app": {
-    "title": "NayFlash",
     "windows": [
       {
         "title": "NayFlash — Every OS journey begins here",
@@ -29,24 +28,7 @@
   },
   "plugins": {
     "shell": {
-      "open": true,
-      "scope": [
-        {
-          "name": "lsblk",
-          "cmd": "lsblk",
-          "args": ["-J", "-d", "-o", "NAME,SIZE,TYPE,RM,MOUNTPOINT,LABEL,MODEL"]
-        },
-        {
-          "name": "dd-flash",
-          "cmd": "pkexec",
-          "args": true
-        },
-        {
-          "name": "powershell-drives",
-          "cmd": "powershell",
-          "args": true
-        }
-      ]
+      "open": true
     }
   }
 }

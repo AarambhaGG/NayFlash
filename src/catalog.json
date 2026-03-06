@@ -3,38 +3,38 @@
   "distros": [
     {
       "id": "ubuntu-24-04",
-      "name": "Ubuntu 24.04 LTS",
+      "name": "Ubuntu 24.04.2 LTS",
       "description": "Beginner friendly, great for desktops. The most popular Linux distribution for everyday use.",
-      "url": "https://releases.ubuntu.com/24.04/ubuntu-24.04-desktop-amd64.iso",
-      "checksum_sha256": "81fae9cc21e2b1e3a9a4526c7dad3131b668e346c580702235ad4d02645d9455",
-      "size_gb": 5.7,
+      "url": "https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-desktop-amd64.iso",
+      "checksum_sha256": "d6dab0c3a657988501b4bd76f1297c053df710e06e0c3aece60dead24f270b4d",
+      "size_gb": 6.0,
       "icon_url": "https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png"
     },
     {
-      "id": "fedora-40",
-      "name": "Fedora 40 Workstation",
+      "id": "fedora-41",
+      "name": "Fedora 41 Workstation",
       "description": "Cutting-edge features with a polished GNOME desktop. Great for developers.",
-      "url": "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-40-1.14.iso",
+      "url": "https://download.fedoraproject.org/pub/fedora/linux/releases/41/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-41-1.4.iso",
       "checksum_sha256": "d6e0c1d1c29a1e3b7e1a6f4b8d4f5c2a8e9b0d1c2f3a4b5c6d7e8f9a0b1c2d3",
-      "size_gb": 2.1,
+      "size_gb": 2.2,
       "icon_url": "https://fedoraproject.org/w/uploads/2/2d/Logo_fedoralogo.png"
     },
     {
       "id": "debian-12",
-      "name": "Debian 12",
+      "name": "Debian 12.9",
       "description": "The universal operating system. Rock-solid stability for servers and desktops.",
-      "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.5.0-amd64-DVD-1.iso",
+      "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/debian-12.9.0-amd64-DVD-1.iso",
       "checksum_sha256": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
       "size_gb": 3.7,
       "icon_url": "https://www.debian.org/logos/openlogo-nd.svg"
     },
     {
-      "id": "linux-mint-21-3",
-      "name": "Linux Mint 21.3",
+      "id": "linux-mint-22",
+      "name": "Linux Mint 22",
       "description": "Elegant, easy to use. The most comfortable desktop experience based on Ubuntu.",
-      "url": "https://mirrors.kernel.org/linuxmint/stable/21.3/linuxmint-21.3-cinnamon-64bit.iso",
+      "url": "https://mirrors.kernel.org/linuxmint/stable/22/linuxmint-22-cinnamon-64bit.iso",
       "checksum_sha256": "b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2",
-      "size_gb": 2.7,
+      "size_gb": 2.8,
       "icon_url": "https://linuxmint.com/web/img/favicon.ico"
     },
     {
@@ -52,14 +52,14 @@
       "description": "Lightweight and flexible. A rolling-release distro for advanced users who want full control.",
       "url": "https://geo.mirror.pkgbuild.com/iso/latest/archlinux-x86_64.iso",
       "checksum_sha256": "d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2",
-      "size_gb": 0.9,
+      "size_gb": 1.1,
       "icon_url": "https://archlinux.org/static/logos/archlinux-logo-dark-scalable.518881f04ca9.svg"
     },
     {
-      "id": "kali-linux-2024-1",
-      "name": "Kali Linux 2024.1",
+      "id": "kali-linux-2024-4",
+      "name": "Kali Linux 2024.4",
       "description": "The most advanced penetration testing distribution. Built for security professionals.",
-      "url": "https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-installer-amd64.iso",
+      "url": "https://cdimage.kali.org/kali-2024.4/kali-linux-2024.4-installer-amd64.iso",
       "checksum_sha256": "e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2",
       "size_gb": 4.0,
       "icon_url": "https://www.kali.org/images/kali-dragon-icon.svg"
