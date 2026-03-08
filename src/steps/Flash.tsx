@@ -79,41 +79,51 @@ export default function Flash({ distro, isoPath, onReset }: FlashProps) {
   const pct = progress?.percentage ?? 0;
 
   return (
-    <div className="h-full flex flex-col items-center justify-center px-8">
-      <div className="w-full max-w-md">
+    <div className="h-full flex flex-col items-center justify-center px-8 animate-fadeIn">
+      <div className="w-full max-w-sm">
         {/* Header */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-black text-white">Flash to USB</h2>
-          <p className="text-sm text-neutral-500 mt-1">{distro.name}</p>
+        <div className="mb-8 text-center">
+          <h2 className="text-lg font-bold text-white/90">Flash to USB</h2>
+          <p className="text-xs text-zinc-600 font-mono mt-1">{distro.name}</p>
         </div>
 
         {/* Selecting drive */}
         {status === "selecting" && (
-          <div className="space-y-4">
+          <div className="space-y-3 animate-fadeInUp">
             {loading ? (
-              <p className="text-sm text-neutral-500 font-mono">Scanning drives...</p>
+              <div className="flex items-center justify-center gap-3 py-8">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent/50 animate-breathe" />
+                <p className="text-sm text-zinc-500 font-mono">Scanning drives</p>
+              </div>
             ) : error ? (
-              <div className="space-y-3">
-                <p className="text-sm text-red-500">{error}</p>
-                <button onClick={loadDrives} className="text-sm text-white underline hover:no-underline">
+              <div className="space-y-4 text-center">
+                <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/10">
+                  <p className="text-sm text-red-400/80">{error}</p>
+                </div>
+                <button onClick={loadDrives} className="text-sm text-accent hover:text-accent-50 transition-colors font-medium focus-ring rounded px-3 py-1">
                   Retry
                 </button>
               </div>
             ) : drives.length === 0 ? (
-              <div className="space-y-3">
-                <p className="text-sm text-neutral-500">No USB drives detected.</p>
-                <p className="text-xs text-neutral-600">Insert a USB drive and refresh.</p>
-                <button onClick={loadDrives} className="text-sm text-white underline hover:no-underline">
+              <div className="text-center py-6 space-y-3">
+                <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center mx-auto">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-zinc-600">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  </svg>
+                </div>
+                <p className="text-sm text-zinc-500">No USB drives detected</p>
+                <p className="text-[11px] text-zinc-700">Insert a drive and refresh</p>
+                <button onClick={loadDrives} className="text-sm text-accent hover:text-accent-50 transition-colors font-medium focus-ring rounded px-3 py-1">
                   Refresh
                 </button>
               </div>
             ) : (
-              <div className="space-y-0 divide-y divide-neutral-800">
-                <div className="flex items-center justify-between pb-2">
-                  <p className="text-xs text-neutral-600 font-mono">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-[11px] text-zinc-600 font-mono tracking-wide">
                     {drives.length} drive{drives.length !== 1 ? "s" : ""}
                   </p>
-                  <button onClick={loadDrives} className="text-xs text-neutral-500 hover:text-white">
+                  <button onClick={loadDrives} className="text-[11px] text-zinc-600 hover:text-accent transition-colors font-medium focus-ring rounded px-2 py-0.5">
                     Refresh
                   </button>
                 </div>
@@ -121,14 +131,21 @@ export default function Flash({ distro, isoPath, onReset }: FlashProps) {
                   <button
                     key={drive.device}
                     onClick={() => handleSelect(drive)}
-                    className="w-full py-3 text-left hover:text-cyan-400 transition-colors group"
+                    className="w-full p-3 rounded-xl glass glass-hover transition-all duration-200 text-left group focus-ring"
                   >
-                    <p className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">
-                      {drive.label || drive.model}
-                    </p>
-                    <p className="text-xs text-neutral-600 font-mono">
-                      {drive.device} · {drive.size}
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-white/90 group-hover:text-accent transition-colors duration-200">
+                          {drive.label || drive.model}
+                        </p>
+                        <p className="text-[11px] text-zinc-600 font-mono mt-0.5">
+                          {drive.device} &middot; {drive.size}
+                        </p>
+                      </div>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-zinc-700 group-hover:text-accent/50 transition-colors">
+                        <path d="M9 18l6-6-6-6"/>
+                      </svg>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -138,27 +155,39 @@ export default function Flash({ distro, isoPath, onReset }: FlashProps) {
 
         {/* Confirmation */}
         {status === "confirming" && selectedDrive && (
-          <div className="space-y-5">
-            <div className="border border-red-900 p-4">
-              <p className="text-sm font-bold text-red-500 mb-2">WARNING: ALL DATA WILL BE ERASED</p>
-              <p className="text-xs text-neutral-500">Target:</p>
-              <p className="text-sm font-bold text-white font-mono mt-1">
-                {selectedDrive.label || selectedDrive.model} ({selectedDrive.device}) — {selectedDrive.size}
-              </p>
+          <div className="space-y-4 animate-fadeInUp">
+            <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
+              <div className="flex items-start gap-3">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgb(239 68 68)" strokeWidth="1.5" strokeLinecap="round" className="flex-shrink-0 mt-0.5">
+                  <path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
+                <div>
+                  <p className="text-sm font-semibold text-red-400/90">All data will be erased</p>
+                  <div className="mt-2 space-y-1">
+                    <p className="text-[11px] text-zinc-600">Target drive</p>
+                    <p className="text-sm font-mono text-white/80">
+                      {selectedDrive.label || selectedDrive.model}
+                    </p>
+                    <p className="text-[11px] font-mono text-zinc-600">
+                      {selectedDrive.device} &middot; {selectedDrive.size}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <button
               onClick={handleConfirmFlash}
-              className="w-full py-3 bg-red-600 text-white font-bold text-sm hover:bg-red-700 transition-colors"
+              className="w-full py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 font-semibold text-sm hover:bg-red-500/15 hover:border-red-500/30 transition-all duration-200 focus-ring"
             >
-              Confirm & Flash
+              Confirm &amp; Flash
             </button>
             <button
               onClick={() => {
                 setSelectedDrive(null);
                 setStatus("selecting");
               }}
-              className="text-sm text-neutral-500 underline hover:no-underline"
+              className="w-full text-center text-[11px] text-zinc-600 hover:text-zinc-400 transition-colors font-medium py-1 focus-ring rounded"
             >
               Cancel
             </button>
@@ -167,36 +196,47 @@ export default function Flash({ distro, isoPath, onReset }: FlashProps) {
 
         {/* Flashing */}
         {status === "flashing" && (
-          <div className="space-y-5">
-            <p className="text-sm text-white font-bold">Writing...</p>
-            <p className="text-xs text-yellow-500">Do not remove the USB drive.</p>
+          <div className="space-y-6 animate-fadeInUp">
+            <div className="text-center space-y-1.5">
+              <p className="text-sm font-semibold text-white/90">Writing to disk</p>
+              <p className="text-[11px] text-yellow-400/60 font-mono">Do not remove USB drive</p>
+            </div>
 
-            <div>
-              <div className="h-1 bg-neutral-800 w-full">
+            <div className="space-y-2">
+              <div className="h-1.5 bg-white/[0.04] rounded-full w-full overflow-hidden">
                 <div
-                  className="h-full bg-white transition-all duration-300 ease-out"
+                  className="h-full bg-gradient-to-r from-accent/60 to-accent rounded-full transition-all duration-500 ease-out progress-glow"
                   style={{ width: `${Math.min(pct, 100)}%` }}
                 />
               </div>
-              <p className="mt-2 text-sm font-bold text-white font-mono">
-                {pct.toFixed(1)}%
-              </p>
+              <div className="flex justify-between text-[11px] font-mono">
+                <span className="text-zinc-500">{pct.toFixed(1)}%</span>
+                <span className="text-zinc-600">writing...</span>
+              </div>
             </div>
           </div>
         )}
 
         {/* Done */}
         {status === "done" && (
-          <div className="space-y-5">
-            <p className="text-sm text-green-500 font-bold">
-              ✓ Flash complete. {distro.name} written to {selectedDrive?.device}.
-            </p>
-            <p className="text-xs text-neutral-600">
-              You can safely remove the USB drive and boot from it.
+          <div className="space-y-5 animate-fadeInUp text-center">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/15 flex items-center justify-center mx-auto">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(16 185 129)" strokeWidth="2" strokeLinecap="round">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-emerald-400/90">Flash complete</p>
+              <p className="text-[11px] text-zinc-600 mt-1">
+                {distro.name} written to {selectedDrive?.device}
+              </p>
+            </div>
+            <p className="text-[11px] text-zinc-700">
+              Safe to remove the USB drive and boot from it
             </p>
             <button
               onClick={onReset}
-              className="w-full py-3 bg-white text-black font-bold text-sm hover:bg-neutral-200 transition-colors"
+              className="w-full py-3 rounded-xl glass glass-hover text-white/70 font-medium text-sm transition-all duration-200 focus-ring"
             >
               Flash Another
             </button>
@@ -205,27 +245,30 @@ export default function Flash({ distro, isoPath, onReset }: FlashProps) {
 
         {/* Error */}
         {status === "error" && (
-          <div className="space-y-4">
-            <p className="text-sm text-red-500">{flashError}</p>
-            <div className="flex gap-4">
+          <div className="space-y-5 animate-fadeInUp">
+            <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/10">
+              <p className="text-sm text-red-400/80">{flashError}</p>
+            </div>
+            <div className="flex items-center justify-center gap-4">
               <button
                 onClick={() => {
                   setStatus("confirming");
                   setFlashError("");
                 }}
-                className="text-sm text-white underline hover:no-underline"
+                className="text-sm text-accent hover:text-accent-50 transition-colors font-medium focus-ring rounded px-2 py-1"
               >
                 Retry
               </button>
+              <span className="text-zinc-700">&middot;</span>
               <button
                 onClick={() => {
                   setSelectedDrive(null);
                   setStatus("selecting");
                   loadDrives();
                 }}
-                className="text-sm text-neutral-500 underline hover:no-underline"
+                className="text-sm text-zinc-400 hover:text-white transition-colors font-medium focus-ring rounded px-2 py-1"
               >
-                Select Different Drive
+                Different Drive
               </button>
             </div>
           </div>
