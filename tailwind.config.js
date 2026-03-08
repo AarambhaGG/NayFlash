@@ -7,6 +7,7 @@ export default {
       colors: {
         accent: {
           DEFAULT: "#00d4ff",
+          dim: "#00a3c7",
           50: "#e6fbff",
           100: "#b3f3ff",
           200: "#80ebff",
@@ -18,17 +19,27 @@ export default {
           800: "#005266",
           900: "#002733",
         },
-        dark: {
-          DEFAULT: "#0f1117",
-          50: "#1a1d27",
-          100: "#141620",
-          200: "#0f1117",
-          300: "#0a0c10",
-          400: "#050608",
+        surface: {
+          DEFAULT: "#09090b",
+          50: "#18181b",
+          100: "#131316",
+          200: "#0e0e11",
+          300: "#09090b",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        sans: ["Space Grotesk", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
+      borderRadius: {
+        '2xl': '1rem',
+        '3xl': '1.25rem',
+      },
+      boxShadow: {
+        glow: '0 0 20px rgba(0, 212, 255, 0.15)',
+        'glow-sm': '0 0 10px rgba(0, 212, 255, 0.1)',
+        'glow-lg': '0 0 40px rgba(0, 212, 255, 0.2)',
+        'inner-glow': 'inset 0 0 20px rgba(0, 212, 255, 0.05)',
       },
     },
   },
