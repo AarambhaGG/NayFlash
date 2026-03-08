@@ -44,28 +44,40 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-black overflow-hidden">
+    <div className="h-screen flex flex-col bg-surface noise overflow-hidden">
+      {/* Ambient glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none" />
+
       {/* Header */}
-      <header className="flex-shrink-0 border-b border-neutral-800">
-        <div className="px-6 py-3 flex items-center justify-between">
-          <h1 className="text-sm font-black text-white tracking-tight">
-            NayFlash
-          </h1>
+      <header className="relative flex-shrink-0 glow-line z-10">
+        <div className="px-6 py-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-accent/60 shadow-glow-sm" />
+            <h1 className="text-sm font-bold text-white/90 tracking-tight">
+              nayflash
+            </h1>
+          </div>
+
           <StepIndicator currentStep={currentStep} />
+
           {currentStep > 1 && (
             <button
               onClick={handleBack}
-              className="text-xs text-neutral-500 hover:text-white transition-colors font-bold uppercase tracking-wide"
+              className="flex items-center gap-1.5 text-[11px] text-zinc-500 hover:text-accent transition-colors duration-200 font-medium tracking-wide uppercase focus-ring rounded px-2 py-1"
             >
-              ← Back
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+              Back
             </button>
           )}
+          {currentStep === 1 && <div className="w-16" />}
         </div>
       </header>
 
       {/* Content */}
-      <main className="flex-1 overflow-hidden">
-        <div className="h-full animate-fadeIn">
+      <main className="flex-1 overflow-hidden relative">
+        <div className="h-full animate-fadeIn" key={currentStep}>
           {currentStep === 1 && (
             <Search onSelect={handleDistroSelect} />
           )}
